@@ -2,4 +2,4 @@
 
 Hey, shopping list!
 
-New! So, new!
+Extra info!

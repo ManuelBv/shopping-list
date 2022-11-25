@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:watch": "esbuild src/index.ts --watch --bundle --minify --outfile=public/dist/app.js && tsc",
-    "start:server": "live-server --open=/public"
+    "start:server": "live-server --open=/public",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -22,7 +23,20 @@
     "esbuild": "^0.15.15"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.44.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.5.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
     "live-server": "^1.1.0",
+    "prettier": "2.8.0",
     "typescript": "^4.9.3"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

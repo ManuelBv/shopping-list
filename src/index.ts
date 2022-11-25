@@ -1,3 +1,3 @@
-import sayName from './components/hello'
+import sayName from "./components/hello";
 
-console.log(sayName('hey'));
+console.log(sayName("hey"));

@@ -6,7 +6,7 @@ Hey, shopping list!
 
 Instructions on running and developing the Shopping List app
 
-1. make sure to hane `node v16+` installed
+1. make sure to have `node v16+` installed
 2. run `npm ci` to install the dependencies
 3. run `npm run start:server` - starts the server and enables hot reload
 4. run `npm run build:watch` - runs `esbuild` and `tsc` in watch mode to reflect changes as you make them

@@ -1,7 +1,10 @@
 .shopping-app-wrapper {
   width: 100%;
   height: 100%;
-  display: block;
+  display: flex;
+  flex-direction: column;
   min-height: 500px;
-  border: solid 1px blue;
+  border: solid 1px black;
+  background: #c0c0c0;
+  gap: 1rem;
 }

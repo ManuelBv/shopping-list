@@ -1,4 +1,4 @@
-import runShoppingApp from './app/main';
+import runShoppingApp from '@/app/main';
 
 const appRootId = 'shopping-app';
 const appRoot = document.getElementById(appRootId);

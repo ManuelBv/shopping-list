@@ -1,4 +1,4 @@
-import createComponent from '../components/utils';
+import createComponent from '@/components/utils';
 
 const runShoppingApp = (rootElement: HTMLElement) => {
   const titleBarText = createComponent({

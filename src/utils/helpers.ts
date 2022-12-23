@@ -1,18 +1,11 @@
-interface CreateCompponentProps {
-  tag: string;
-  className?: string;
-  childComponents?: (HTMLElement | string)[];
-  props?: {
-    [key: string]: string;
-  };
-}
+import { CreateComponentProps } from './types';
 
 const createComponent = ({
   tag,
   className,
   childComponents,
   props,
-}: CreateCompponentProps): HTMLElement => {
+}: CreateComponentProps): HTMLElement => {
   const component = document.createElement(tag);
   if (className) {
     component.setAttribute('class', className);

@@ -1,6 +1,6 @@
 import runShoppingApp from '@/app/main';
+import { appRootId } from './utils/constants';
 
-const appRootId = 'shopping-app';
 const appRoot = document.getElementById(appRootId);
 
 if (!appRoot) {

@@ -1,5 +1,5 @@
 import runShoppingApp from '@/app/main';
-import { appRootId } from './utils/constants';
+import { appRootId } from '@/utils/constants';
 
 const appRoot = document.getElementById(appRootId);
 

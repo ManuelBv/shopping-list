@@ -1,4 +1,4 @@
-import { CreateComponentProps } from './types';
+import { CreateComponentProps } from '@/utils/types';
 
 const createComponent = ({
   tag,

@@ -1,11 +1,18 @@
-import { shoppingListNameButtonId } from './constants';
+import { shoppingListNameButtonId } from '@/utils/constants';
+import Storage from '@/utils/storage';
 
-const addEvents = (rootElement: HTMLElement) => {
+const addAllEvents = (rootElement: HTMLElement) => {
   rootElement
     .querySelector(`#${shoppingListNameButtonId}`)
     ?.addEventListener('click', (event) => {
       console.log(event);
+      Storage.save('hey', { boo: 'boo', hey: 'boooo' });
+      console.log(Storage.read('hey'));
     });
 };
 
-export default addEvents;
+const Events = {
+  addAllEvents,
+};
+
+export default Events;

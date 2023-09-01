@@ -1,12 +1,9 @@
 import titleBar from '@/components/titleBar';
-import {
-  shoppingListInput,
-  shoppingListLabel,
-  shoppingListButton,
-} from '@/components/shoppingListName';
-import fieldRow from '@/components/fieldRow';
+import { windowBody } from '@/components/window-body';
+import { statusBarWrapper } from '@/components/status-bar';
 
 export const shoppingListAppLayoutConfig = [
   titleBar,
-  fieldRow([shoppingListLabel, shoppingListInput, shoppingListButton]),
+  windowBody,
+  statusBarWrapper,
 ];

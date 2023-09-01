@@ -1,13 +1,11 @@
-import createComponent from '@/utils/helpers';
-
-import { shoppingAppWrapperClass } from '@/utils/constants';
+import { createComponent } from '@/utils/helpers';
 import { shoppingListAppLayoutConfig } from '@/config/layout';
 import Events from '@/utils/events';
 
 const addWrapperContent = (rootElement: HTMLElement) => {
   const shoppingListApp = createComponent({
     tag: 'div',
-    className: shoppingAppWrapperClass,
+    className: 'window',
     childComponents: shoppingListAppLayoutConfig,
   });
 
@@ -16,7 +14,7 @@ const addWrapperContent = (rootElement: HTMLElement) => {
 
 const runShoppingApp = (rootElement: HTMLElement) => {
   addWrapperContent(rootElement);
-  Events.addAllEvents(rootElement);
+  Events.addAllEvents();
 };
 
 export default runShoppingApp;

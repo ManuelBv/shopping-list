@@ -1,6 +1,8 @@
-# shopping-list
+# Front-end shopping list
 
-Hey, shopping list!
+A simple shopping list which makes use of `localStorage` in order to store lists details. No need of backend services, just a webpage where the compiled content from `public/dist` folder can display its content.
+
+The graphical theme is using Windows 98 styles from [98.CSS](https://jdan.github.io/98.css).
 
 ## Usage
 

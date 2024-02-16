@@ -3,6 +3,30 @@ import {
   updateShoppingListNumberStatus,
 } from './helpers';
 
+let db: IDBDatabase;
+const setupDB = window.indexedDB.open('shoppingListDB', 1);
+
+setupDB.addEventListener('error', () => {
+  console.log('Error opening DB!');
+})
+
+setupDB.addEventListener('success', () => {
+  console.log('Yay, we have DB!');
+  db = setupDB.result;
+})
+
+setupDB.addEventListener('upgradeneeded', (init: any) => {
+  db = init.target.result;
+
+  db.onerror = () => {
+    console.log('Error loading DB!');
+  }
+
+  const table = db.createObjectStore('shoppingListTable', { keyPath: 'name', autoIncrement:true });
+  table.createIndex('name', 'name', { unique: true });
+})
+
+
 const save = (key: string, data: object) => {
   if (window.localStorage.getItem(key)) {
     console.error(
@@ -11,6 +35,13 @@ const save = (key: string, data: object) => {
     return;
   }
   window.localStorage.setItem(key, JSON.stringify(data));
+
+  const transaction = db.transaction(['shoppingListTable'], 'readwrite');
+  const objectStoreTable = transaction.objectStore('shoppingListTable');
+  objectStoreTable.add(data);
+
+  // continue https://blog.logrocket.com/using-indexeddb-complete-guide/
+
   updateShoppingListNumberStatus();
 };
 

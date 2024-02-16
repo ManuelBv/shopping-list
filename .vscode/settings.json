@@ -1,0 +1,28 @@
+{
+  "cSpell.words": [
+    "breathalyser",
+    "jsonata",
+    "outbounding"
+  ],
+  "editor.tabSize": 2,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ]
+}

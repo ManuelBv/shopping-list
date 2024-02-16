@@ -1,0 +1,46 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach by Process ID",
+      "processId": "${command:PickProcess}",
+      "request": "attach",
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceRoot}/server/node_modules/**/*.js"
+      ],
+      "type": "node"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest: debug test",
+      "program": "${workspaceFolder}/server/node_modules/.bin/jest",
+      "args": ["-c", "${workspaceFolder}/server/jest.config.js", "--verbose", "-i", "--no-cache"],
+      "console": "integratedTerminal",
+      "windows": {
+        "program": "${workspaceFolder}/server/node_modules/jest/bin/jest"
+      },
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/server/node_modules/**/*.js"
+      ]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest: debug CAR UI test",
+      "program": "${workspaceFolder}/server/node_modules/.bin/jest",
+      "cwd": "${workspaceFolder}/server/products/car",
+      "args": ["-c", "${workspaceFolder}/server/jest.config.jsdom.js", "--verbose", "-i", "--no-cache"],
+      "console": "integratedTerminal",
+      "windows": {
+        "program": "${workspaceFolder}/server/node_modules/jest/bin/jest"
+      },
+      "skipFiles": [
+        "<node_internals>/**",
+        "${workspaceFolder}/server/node_modules/**/*.js"
+      ]
+    }
+  ]
+}

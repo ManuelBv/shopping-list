@@ -3,28 +3,66 @@ import {
   updateShoppingListNumberStatus,
 } from './helpers';
 
-let db: IDBDatabase;
-const setupDB = window.indexedDB.open('shoppingListDB', 1);
+const dbName = 'todoListApp';
+const storeName = 'tasks';
 
-setupDB.addEventListener('error', () => {
-  console.log('Error opening DB!');
-})
+interface Task {
+  id?: number;
+  title: string;
+  completed: boolean;
+}
 
-setupDB.addEventListener('success', () => {
-  console.log('Yay, we have DB!');
-  db = setupDB.result;
-})
+class IndexedDBService {
+  private db: IDBDatabase | null = null;
 
-setupDB.addEventListener('upgradeneeded', (init: any) => {
-  db = init.target.result;
+  async openDB() {
+    return new Promise<void>((resolve, reject) => {
+      const request = indexedDB.open(dbName, 1);
 
-  db.onerror = () => {
-    console.log('Error loading DB!');
+      request.onupgradeneeded = event => {
+        this.db = (event.target as IDBOpenDBRequest).result;
+        if (!this.db.objectStoreNames.contains(storeName)) {
+          this.db.createObjectStore(storeName, { keyPath: 'id', autoIncrement: true });
+        }
+      };
+
+      request.onsuccess = event => {
+        this.db = (event.target as IDBOpenDBRequest).result;
+        resolve();
+      };
+
+      request.onerror = event => {
+        console.error('Database error:', request.error);
+        reject(request.error);
+      };
+    });
   }
 
-  const table = db.createObjectStore('shoppingListTable', { keyPath: 'name', autoIncrement:true });
-  table.createIndex('name', 'name', { unique: true });
-})
+  async addTask(task: Task) {
+    return new Promise<number>((resolve, reject) => {
+      const transaction = this.db!.transaction([storeName], 'readwrite');
+      const store = transaction.objectStore(storeName);
+      const request = store.add(task);
+
+      request.onsuccess = () => {
+        console.log('Task added:', request.result);
+        resolve(request.result as number);
+      };
+
+      request.onerror = () => {
+        console.error('Error adding task:', request.error);
+        reject(request.error);
+      };
+    });
+  }
+}
+
+export const dbService = new IndexedDBService();
+
+async function addNewTask(title: string) {
+  await dbService.openDB();
+  await dbService.addTask({ title, completed: false });
+}
 
 
 const save = (key: string, data: object) => {
@@ -36,11 +74,7 @@ const save = (key: string, data: object) => {
   }
   window.localStorage.setItem(key, JSON.stringify(data));
 
-  const transaction = db.transaction(['shoppingListTable'], 'readwrite');
-  const objectStoreTable = transaction.objectStore('shoppingListTable');
-  objectStoreTable.add(data);
-
-  // continue https://blog.logrocket.com/using-indexeddb-complete-guide/
+  addNewTask('Complete IndexedDB tutorial');
 
   updateShoppingListNumberStatus();
 };
